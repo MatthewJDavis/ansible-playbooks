@@ -1,5 +1,5 @@
 ---
-- name: reboot server
+- name: restart server
   shell: sleep 2 && shutdown -r now "Ansible reboot"
   async: 1
   poll: 0
