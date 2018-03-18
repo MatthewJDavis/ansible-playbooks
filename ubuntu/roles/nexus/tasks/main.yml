@@ -1,0 +1,53 @@
+---
+- name: update hostname
+  hostname:
+    name: "{{ hostname }}"
+- name: add Oracle repository
+  apt_repository:
+    repo: ppa:webupd8team/java
+    state: present
+- name: update all packages
+  apt:
+    update_cache: yes
+- name: upgrade packages
+  apt:
+    upgrade: yes
+    ignore_errors: true
+- name: Install java 8 preresequesits
+  apt: 
+    name: python-software-properties
+- name: Agree to oracle license
+  debconf: 
+    name: oracle-java8-installer
+    question: shared/accepted-oracle-license-v1-1 
+    vtype: select 
+    value: true
+- name: install Oracle Java 8
+  apt:
+    name: oracle-java8-installer
+    update_cache: yes
+- name: update all packages
+  apt:
+    update_cache: yes
+  notify:
+  - restart server
+
+# Nexus user and directory
+- name: Create nexus user
+  user:
+    name: nexus
+- name: create Nexus directory
+  file:
+    path: /opt/nexus
+    state: directory
+    mode: 0755
+    owner: nexus
+
+# Download, extract nexus repository
+- name: download and unarchive nexus repository oss
+  unarchive:
+    src: https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+    dest: /opt/nexus
+    owner: nexus
+    remote_src: yes
+# Set sytemd for nexus repo
