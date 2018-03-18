@@ -8,11 +8,8 @@
     state: present
 - name: update all packages
   apt:
-    update_cache: yes
-- name: upgrade packages
-  apt:
     upgrade: yes
-    ignore_errors: true
+    update_cache: yes
 - name: Install java 8 preresequesits
   apt: 
     name: python-software-properties
@@ -25,10 +22,6 @@
 - name: install Oracle Java 8
   apt:
     name: oracle-java8-installer
-    update_cache: yes
-- name: update all packages
-  apt:
-    update_cache: yes
   notify:
   - restart server
 
@@ -50,4 +43,20 @@
     dest: /opt/nexus
     owner: nexus
     remote_src: yes
-# Set sytemd for nexus repo
+- name: set owner of all files in nexus directory
+  file:
+    path: /opt/nexus
+    owner: nexus
+    recurse: true
+    state: directory
+# Set systemd for nexus repo
+- name: copy systemd service template to server
+  template:  
+    src: nexus.service 
+    dest: /etc/systemd/system/
+- name: register nexus systemd config and start the service
+  shell: |
+    systemctl daemon-reload
+    systemctl enable nexus.service
+    systemctl start nexus.service
+    
