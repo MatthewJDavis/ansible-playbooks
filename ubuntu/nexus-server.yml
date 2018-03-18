@@ -1,0 +1,5 @@
+---
+- hosts: nexus-servers
+  become: true
+  roles:
+    nexus
