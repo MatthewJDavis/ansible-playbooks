@@ -1,0 +1,17 @@
+# Quick runbook to get rundeck up and running on ubuntu 16.04
+- name: install rundeck
+  hosts: azure-rundeck
+  become: True
+
+  tasks:
+    - name: install java
+      apt:
+        name: openjdk-8-jdk
+        state: present
+    - name: download and install deb package
+      apt:
+        deb: "http://download.rundeck.org/deb/rundeck_2.11.4-1-GA_all.deb"
+    - name: add to startup service
+      service:
+        name: rundeckd
+        state: started
