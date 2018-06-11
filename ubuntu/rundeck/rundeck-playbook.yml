@@ -37,6 +37,10 @@
         name: ansible
         state: present
         update_cache: True
-    - name Install winrm for python
+    - name: Install pip
+      easy_install:
+        name: pip
+        state: latest
+    - name: Install winrm for python
       pip:
         name: 'pywinrm>=0.2.2'
