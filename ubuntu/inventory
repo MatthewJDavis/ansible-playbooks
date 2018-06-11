@@ -1,0 +1,22 @@
+web1 ansible_ssh_host=192.168.33.20 
+db1 ansible_ssh_host=192.168.33.30 
+nexus ansible_ssh_host=192.168.33.49
+
+[webservers]
+web1
+
+[dbservers]
+db1
+
+[nexus-servers]
+nexus
+
+[datacentre:children]
+webservers
+dbservers
+nexus-servers
+
+[datacentre:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_pass=vagrant
+
