@@ -10,17 +10,33 @@
         state: present
     - name: download and install deb package
       apt:
-        deb: "http://download.rundeck.org/deb/rundeck_2.11.4-1-GA_all.deb"
+        deb: 'http://download.rundeck.org/deb/rundeck_2.11.4-1-GA_all.deb'
     - name: add to startup service
       service:
         name: rundeckd
         state: started
     - name: Copy ansible plugin jar
       copy:
-        src: "https://github.com/Batix/rundeck-ansible-plugin/releases/download/2.4.0/ansible-plugin-2.4.0.jar"
+        src: 'https://github.com/Batix/rundeck-ansible-plugin/releases/download/2.4.0/ansible-plugin-2.4.0.jar'
         dest: /var/lib/rundeck/libext/
         remote: True
     - name: Restart rundeck service
       service:
         name: rundeckd
         starte: restarted
+    - name: Install common software for ansible
+      apt:
+        name: software-properties-common
+        state: present
+    - name: Add Ansible repo
+      apt_repository: 
+        repo: 'ppa:ansible/ansible'
+        state: present
+    - name: Install Ansible
+      apt:
+        name: ansible
+        state: present
+        update_cache: True
+    - name Install winrm for python
+      pip:
+        name: 'pywinrm>=0.2.2'
