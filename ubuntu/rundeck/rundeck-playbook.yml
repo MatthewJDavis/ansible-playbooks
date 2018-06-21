@@ -23,7 +23,7 @@
     - name: Restart rundeck service
       service:
         name: rundeckd
-        starte: restarted
+        state: restarted
     - name: Install common software for ansible
       apt:
         name: software-properties-common
