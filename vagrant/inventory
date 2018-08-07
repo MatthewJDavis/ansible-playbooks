@@ -10,5 +10,12 @@ centos
 windows2016
 
 [linux-servers:vars]
-ansible_ssh_user=
-ansible_ssh_pass=
+ansible_ssh_user={{ local_user }}
+ansible_ssh_pass={{ local_password }}
+
+[windows-servers:vars]
+ansible_user={{ local_user }}
+ansible_password={{ local_password }}
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
