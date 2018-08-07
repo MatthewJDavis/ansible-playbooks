@@ -16,13 +16,26 @@ Vagrant.configure("2") do |config|
         provision.path = "provision-ansible.sh"
     end
   end
+  
+  config.vm.define "ubuntu" do |ubuntu|
+    ubuntu.vm.box = "bento/ubuntu-16.04"
+    ubuntu.vm.hostname = "ubuntu"
+    ubuntu.vm.network "private_network", ip: "192.168.33.49"
+  end
+
+  config.vm.define "centos" do |centos|
+    centos.vm.box = "nrel/CentOS-6.5-x86_64"
+    centos.vm.hostname = "centos"
+    centos.vm.network "private_network", ip: "192.168.33.30"
+    centos.vm.network "forwarded_port", guest: 80, host: 8080
+  end
 
   config.vm.define "windows2016" do |windows2016|
     windows2016.vm.box= "mwrock/Windows2016"
     windows2016.vm.hostname = "windows2016"
     windows2016.vm.communicator = "winrm"
-    windows2016.winrm.username = "vagrant"
-    windows2016.winrm.password = "vagrant"
+    windows2016.winrm.username = ""
+    windows2016.winrm.password = ""
     windows2016.vm.network "private_network", ip: "192.168.33.20"
-  end  
+  end
 end

@@ -1,0 +1,14 @@
+windows2016 ansible_host=192.168.33.20
+ubuntu ansible_ssh_host=192.168.33.49
+centos ansible_host=192.168.33.30
+
+[linux-servers]
+ubuntu
+centos
+
+[windows-servers]
+windows2016
+
+[linux-servers:vars]
+ansible_ssh_user=
+ansible_ssh_pass=
