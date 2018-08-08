@@ -8,7 +8,7 @@
 Vagrant.configure("2") do |config|
   
   config.vm.define"acs" do |acs|
-    acs.vm.box = "ubuntu/trusty64"
+    acs.vm.box = "ubuntu/xenial64"
     acs.vm.hostname = "acs"
     acs.vm.network "private_network", ip: "192.168.33.10"
     acs.vm.synced_folder "C:\\git\\ansible-playbooks\\", "/home/vagrant/ubuntu"
@@ -34,8 +34,6 @@ Vagrant.configure("2") do |config|
     windows2016.vm.box= "mwrock/Windows2016"
     windows2016.vm.hostname = "windows2016"
     windows2016.vm.communicator = "winrm"
-    windows2016.winrm.username = ""
-    windows2016.winrm.password = ""
     windows2016.vm.network "private_network", ip: "192.168.33.20"
     windows2016.vm.provision "shell" do |provision|
       provision.path = "provision-winrm.ps1"
