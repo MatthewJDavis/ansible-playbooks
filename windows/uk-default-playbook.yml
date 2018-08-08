@@ -1,7 +1,8 @@
 ---
 - hosts: windows2016
   tasks:
-  - win_region:
+  - name: Set region to en-GB
+    win_region:
       location: 242
       unicode_language: en-GB
       format: en-GB
