@@ -2,3 +2,4 @@
 *.retry
 *cache*
 *.vagrant
+*.log
