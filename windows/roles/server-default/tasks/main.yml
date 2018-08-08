@@ -1,0 +1,13 @@
+---
+- name: Install multiple packages with choco
+  win_chocolatey:
+    name: '{{ item }}'
+    state: present
+  with_items:
+  - notepadplusplus
+  - sysinternals
+- name: Remove SMB1
+  win_feature:
+    name: FS-SMB1
+    state: absent
+  notify: restart server
