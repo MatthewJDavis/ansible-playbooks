@@ -1,0 +1,6 @@
+---
+- hosts: "{{ host }}"
+  become: true
+  become_method: sudo
+  roles:
+  - smashing-dashboard  
