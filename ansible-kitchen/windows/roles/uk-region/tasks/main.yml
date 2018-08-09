@@ -1,0 +1,16 @@
+---
+# Configure a Windows Server for the GB region
+- name: Set region to en-GB
+  win_region:
+    location: 242
+    unicode_language: en-GB
+    format: en-GB
+    copy_settings: True
+  register: result
+- name: Set timezone to 'GMT Standard Time' (GMT)
+  win_timezone:
+    timezone: GMT Standard Time
+# Doesn't seem to update the keyboard settings
+#- name: run multi-lined shell commands
+#  win_shell: |
+#    Set-WinUserLanguageList -LanguageList en-GB -Force

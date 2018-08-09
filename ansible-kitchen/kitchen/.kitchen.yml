@@ -1,0 +1,53 @@
+---
+driver:
+  name: vagrant
+  gui: true
+  linked_clone: true
+
+platforms:
+  - name: acs
+    driver_plugin: vagrant
+    driver_config:
+      box: bento/ubuntu-16.04
+      network:
+      - [ 'private_network', { ip: '172.28.128.10' } ]
+    transport:
+      max_ssh_sessions: 1
+    provisioner:
+      name: ansible_playbook
+      roles_path: ../
+      role_name: uk-region
+      ansible_connection: winrm
+      ansible_inventory: inventory/hosts
+      require_windows_support: true
+      require_chef_for_busser: false
+      ansible_host_key_checking: false
+      ansible_verbose: true
+      ansible_verbosity: 4
+      playbook: default.yml
+    verifier:
+      name: shell
+      command: echo 'Skipping Verify'
+
+  - name: windows2016
+    driver_config:
+      box: mwrock/Windows2016
+      communicator: winrm
+      network:
+      - [ 'private_network', { ip: '172.28.128.11' } ]
+      - [ 'forwarded_port', { guest: 80, host: 8080 } ]
+       # needed to force provision of the vagrantfile
+      provision: true
+      # needed to run the ConfigureRemotingForAnsible.ps1
+      vagrantfiles:
+        - vagrant_windows_target.rb
+    transport:
+      name: winrm
+    verifier:
+      name: pester
+      test_folder: tests
+    provisioner:
+      name: shell
+
+suites:
+  - name: default

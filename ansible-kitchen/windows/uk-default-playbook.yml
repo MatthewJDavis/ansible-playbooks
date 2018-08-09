@@ -1,0 +1,31 @@
+---
+- hosts: windows2016
+  tasks:
+  - name: Set region to en-GB
+    win_region:
+      location: 242
+      unicode_language: en-GB
+      format: en-GB
+      copy_settings: True
+    register: result
+  - name: Set timezone to 'GMT Standard Time' (GMT)
+    win_timezone:
+      timezone: GMT Standard Time
+  - name: run multi-lined shell commands
+    win_shell: |
+      Set-WinUserLanguageList -LanguageList en-GB -Force
+  - name: Install multiple packages
+    win_chocolatey:
+      name: '{{ item }}'
+      state: present
+    with_items:
+    - notepadplusplus
+    - sysinternals
+  - name: Remove SMB1
+    win_feature:
+      name: FS-SMB1
+      state: absent
+    register: win_feature
+
+  - win_reboot:
+    when: result.restart_required, win_feature.restart_required
