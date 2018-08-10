@@ -3,3 +3,4 @@
 *cache*
 *.vagrant
 *.log
+.kitchen
