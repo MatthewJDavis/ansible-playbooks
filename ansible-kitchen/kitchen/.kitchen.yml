@@ -15,7 +15,7 @@ platforms:
       max_ssh_sessions: 1
     provisioner:
       name: ansible_playbook
-      roles_path: ../
+      roles_path: ../../windows/roles
       role_name: uk-region
       ansible_connection: winrm
       ansible_inventory: inventory/hosts
@@ -24,7 +24,7 @@ platforms:
       ansible_host_key_checking: false
       ansible_verbose: true
       ansible_verbosity: 4
-      playbook: default.yml
+      playbook: testplaybook.yml
     verifier:
       name: shell
       command: echo 'Skipping Verify'

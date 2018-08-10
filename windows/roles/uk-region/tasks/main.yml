@@ -6,7 +6,7 @@
     unicode_language: en-GB
     format: en-GB
     copy_settings: True
-  register: result
+  notify: restart server
 - name: Set timezone to 'GMT Standard Time' (GMT)
   win_timezone:
     timezone: GMT Standard Time

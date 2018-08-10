@@ -1,3 +1,0 @@
----
-  - name: restart server
-    win_reboot:

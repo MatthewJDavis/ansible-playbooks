@@ -3,3 +3,4 @@
   hosts: windows-servers
   roles:
     - uk-region
+    - server-default
