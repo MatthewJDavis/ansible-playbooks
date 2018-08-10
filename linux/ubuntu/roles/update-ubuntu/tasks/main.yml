@@ -1,0 +1,20 @@
+---
+- name: Update and upgrade apt packages
+  apt:
+    upgrade: yes
+    update_cache: yes
+  register: server_update
+- name: Reboot the server
+  shell: 'sleep 1 && shutdown -r now "Reboot triggered by Ansible" && sleep 1'
+  async: 1
+  poll: 0
+  when: server_update is changed
+- name: Wait for server to restart
+  local_action:
+    module: wait_for
+      host={{ ansible_ssh_host }}
+      port=22
+      delay=10
+  vars:
+    ansible_become: no
+  when: server_update is changed
