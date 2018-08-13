@@ -1,0 +1,18 @@
+---
+- name: install haproxy
+  apt:
+    name: haproxy
+    state: present
+- name: copy haproxy cert
+  copy:
+    dest: /etc/ssl/
+    src: files/haproxy.pem
+- name: copy haproxy config
+  copy:
+    dest: /etc/haproxy/haproxy.cfg
+    src: files/jenkins-haproxy.cfg
+    force: true
+- name: restart haproxy service
+  systemd:
+    state: restarted
+    name: haproxy
