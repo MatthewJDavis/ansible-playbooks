@@ -1,0 +1,42 @@
+---
+- name: create jenkins group
+  group:
+      name: jenkins
+      state: present
+      system: yes
+- name: create jenkins user
+  user:
+      name: jenkins
+      comment: User to run the Jenkins software
+      create_home: yes
+      groups: jenkins
+      system: yes
+- name: Update and upgrade apt packages
+  apt:
+    upgrade: yes
+    update_cache: yes
+  notify: reboot server
+- name: install java
+  apt:
+    name: openjdk-8-jre
+    state: present
+- name: add Jenkins key
+  apt_key: 
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key 
+    state: present
+- name: add Jenkins repository
+  apt_repository:
+    repo: deb https://pkg.jenkins.io/debian-stable binary/ 
+    state: present
+- name: install Jenkins
+  apt:
+    name: jenkins
+    update_cache: yes
+- name: Copy cacert for Java
+  copy:
+    src: files/cacerts
+    dest: /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/
+- name: Copy Jenkins start up args file
+  copy:
+    src: files/jenkins
+    dest: /etc/default/
