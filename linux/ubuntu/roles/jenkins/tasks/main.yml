@@ -32,11 +32,12 @@
   apt:
     name: jenkins
     update_cache: yes
-- name: Copy cacert for Java
-  copy:
-    src: files/cacerts
-    dest: /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/
-- name: Copy Jenkins start up args file
-  copy:
-    src: files/jenkins
-    dest: /etc/default/
+  # needed to trust internal tools with certs from internal pik
+  #- name: Copy cacert for Java
+  #copy:
+   # src: files/cacerts
+   # dest: /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/security/
+#- name: Copy Jenkins start up args file
+ # copy:
+  #  src: files/jenkins
+   # dest: /etc/default/
