@@ -2,4 +2,5 @@
 - hosts: ubuntu
   become: true
   roles:
-  - jenkins
+    - jenkins
+    - haproxy
