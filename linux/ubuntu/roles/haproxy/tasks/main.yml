@@ -5,8 +5,8 @@
     state: present
 - name: copy haproxy cert
   copy:
-    dest: /etc/ssl/
-    src: files/haproxy.pem
+    dest: /var/lib/jenkins/
+    src: files/jenkins.pem
 - name: copy haproxy config
   copy:
     dest: /etc/haproxy/haproxy.cfg
