@@ -7,11 +7,10 @@
   copy:
     dest: /var/lib/jenkins/
     src: files/jenkins.pem
-- name: copy haproxy config
-  copy:
+- name: copy the haproxy config
+  template:
+    src: templates/haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
-    src: files/jenkins-haproxy.cfg
-    force: true
 - name: restart haproxy service
   systemd:
     state: restarted
