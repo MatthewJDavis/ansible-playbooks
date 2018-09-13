@@ -15,4 +15,8 @@ openssl x509 -outform der -in jenkins.pem -out jenkins.matthewdavis111.cer
 Import-Certificate -FilePath C:\TEMP\jenkins.matthewdavis111.cer -CertStoreLocation Cert:\LocalMachine\Root\
 
 #Clean up the cert from the root store
-ls Cert:\LocalMachine\Root\ | where -FilterScript {$_.subject -like "*jenk*"} | Remove-Item
+ls Cert:\LocalMachine\Root\ | where -FilterScript {$_.subject -like "*jenkins.matthewdavis111.com*"} | Remove-Item
+
+openssl req -x509 -out $domain.crt -keyout $domain.key \
+  -newkey rsa:2048 -nodes -sha256  \
+  -subj "/CN=$domain" -extensions EXT -config <( \printf "[dn]\nCN=$domain\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:$domain\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
