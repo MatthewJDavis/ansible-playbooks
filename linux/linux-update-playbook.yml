@@ -1,0 +1,5 @@
+---
+- hosts: linux-servers
+  become: yes
+  roles:
+  - update-linux-server
