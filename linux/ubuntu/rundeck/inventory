@@ -3,6 +3,6 @@ azure-rundeck ansible_host=
 [rundeck-hosts]
 azure-rundeck
 [rundeck-hosts:vars]
-ansible_user={ user }
-ansible_ssh_private_key_file= { ssh-file }
+ansible_user="{{ user }}"
+ansible_ssh_private_key_file="{{ ssh-file }}"
 ansible_python_interpreter=/usr/bin/python3
