@@ -4,3 +4,4 @@
   roles:
     - uk-region
     - server-default
+    - poshbot
