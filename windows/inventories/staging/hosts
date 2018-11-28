@@ -1,0 +1,11 @@
+poshbot ansible_host=
+
+[windows-servers]
+poshbot
+
+[windows-servers:vars]
+ansible_user={{ local_user }}
+ansible_password={{ local_password }}
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore

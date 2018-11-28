@@ -1,0 +1,4 @@
+- name: Add Poshbot Module
+  win_psmodule:
+    name: PoshBot
+    state: present
