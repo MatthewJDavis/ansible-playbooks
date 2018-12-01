@@ -14,3 +14,15 @@
   template:
     src: templates/config.j2
     dest: 'c:\poshbot\config.psd1'
+- name: Copy roles template
+  template:
+    src: templates/roles.j2
+    dest: 'c:\poshbot\roles.psd1'
+- name: Copy roles groups
+  template:
+    src: templates/groups.j2
+    dest: 'c:\poshbot\groups.psd1'
+- name: Copy permissions template
+  template:
+    src: templates/permissions.j2
+    dest: 'c:\poshbot\permissions.psd1'
