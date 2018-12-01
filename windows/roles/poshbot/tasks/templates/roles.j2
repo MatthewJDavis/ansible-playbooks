@@ -1,0 +1,12 @@
+@{
+  Admin = @{
+    Description = 'Bot administrator role'
+    Name = 'Admin'
+    Permissions = @('Builtin:show-help','Builtin:manage-schedules','Builtin:manage-permissions','Builtin:view-group','Builtin:view','Builtin:manage-roles','Builtin:manage-groups','Builtin:view-role','Builtin:manage-plugins')
+  }
+  sysadmins = @{
+    Description = "System Administrator role"
+    Name = 'sysadmins'
+    Permissions = @('PoshBot.Networking:test-network')
+  }
+}

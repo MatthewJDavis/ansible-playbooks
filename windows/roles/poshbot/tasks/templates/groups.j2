@@ -1,0 +1,14 @@
+@{
+  Admin = @{
+    Users = @('{{ slack_id }}')
+    Description = 'Bot administrators'
+    Name = 'Admin'
+    Roles = @('Admin')
+  }
+  sysadmins = @{
+    Users = @('{{ slack_id }}')
+    Description = "sysadmins group"
+    Name = 'sysadmins'
+    Roles = @('sysadmins')
+  }
+}
