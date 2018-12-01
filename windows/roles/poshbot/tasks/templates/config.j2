@@ -1,0 +1,47 @@
+@{
+  ApprovalConfiguration = @{
+    Commands = @()
+    ExpireMinutes = 30
+  }
+  DisallowDMs = $False
+  ModuleManifestsToLoad = @()
+  LogDirectory = 'C:\poshbot\logs'
+  Name = '{{ bot_name }}'
+  BotAdmins = @('{{ bot_admin }}')
+  AlternateCommandPrefixSeperators = @(':',',',';')
+  CommandHistoryMaxLogSizeMB = 10
+  MiddlewareConfiguration = @{
+    PostResponseHooks = @()
+    PreExecuteHooks = @()
+    PostReceiveHooks = @()
+    PreReceiveHooks = @()
+    PostExecuteHooks = @()
+    PreResponseHooks = @()
+  }
+  FormatEnumerationLimitOverride = -1
+  LogLevel = 'Info'
+  SendCommandResponseToPrivate = @()
+  ChannelRules = @{
+    IncludeCommands = @('*')
+    Channel = '*'
+    ExcludeCommands = @()
+  }
+  ConfigurationDirectory = 'C:\poshbot'
+  MaxLogsToKeep = 5
+  AddCommandReactions = $True
+  CommandHistoryMaxLogsToKeep = 5
+  MaxLogSizeMB = 10
+  PluginDirectory = 'C:\poshbot\plugins'
+  MuteUnknownCommand = $False
+  PluginConfiguration = @{
+    
+  }
+  AlternateCommandPrefixes = @('bender','hal')
+  CommandPrefix = '!'
+  BackendConfiguration = @{
+    Token = '{{ token }}'
+    Name = 'SlackBackend'
+  }
+  PluginRepository = @('PSGallery')
+  LogCommandHistory = $True
+}
