@@ -10,3 +10,7 @@
     - 'c:\poshbot'
     - 'c:\poshbot\plugins'
     - 'c:\poshbot\logs'
+- name: Copy config template
+  template:
+    src: /templates/config.j2
+    dest: 'c:\poshbot\config.psd1'
