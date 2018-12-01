@@ -4,3 +4,4 @@
 *.vagrant
 *.log
 .kitchen
+*/vars/main.yml
