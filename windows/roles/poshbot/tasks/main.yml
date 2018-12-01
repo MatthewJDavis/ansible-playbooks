@@ -2,3 +2,11 @@
   win_psmodule:
     name: PoshBot
     state: present
+- name: Create Poshbot Directory
+  win_file:
+    path: '{{ item }}'
+    state: Directory
+  with_items:
+    - 'c:\poshbot'
+    - 'c:\poshbot\plugins'
+    - 'c:\poshbot\logs'
