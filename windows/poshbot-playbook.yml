@@ -1,0 +1,8 @@
+---
+- hosts: poshbot
+  include_vars: testVars.yml
+  roles:
+  - test-domain
+  - server-default
+  - uk-region
+  - poshbot
