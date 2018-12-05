@@ -1,6 +1,7 @@
 ---
 - name: kitchen_test_role
   hosts: windows-servers
+  include_vars: testVars.yml
   roles:
     - uk-region
     - server-default
