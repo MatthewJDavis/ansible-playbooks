@@ -4,4 +4,4 @@
 *.vagrant
 *.log
 .kitchen
-*/vars/main.yml
+*testVars.yml
