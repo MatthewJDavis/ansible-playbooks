@@ -24,7 +24,7 @@ platforms:
       ansible_host_key_checking: false
       ansible_verbose: true
       ansible_verbosity: 4
-      playbook: testplaybook.yml
+      playbook: nexus-test-playbook.yml
     verifier:
       name: shell
       command: echo 'Skipping Verify'
@@ -36,6 +36,7 @@ platforms:
       network:
       - [ 'private_network', { ip: '172.28.128.11' } ]
       - [ 'forwarded_port', { guest: 80, host: 8080 } ]
+      - [ 'forwarded_port', { guest: 8081, host: 8081 } ]
        # needed to force provision of the vagrantfile
       provision: true
       # needed to run the ConfigureRemotingForAnsible.ps1
