@@ -1,7 +1,6 @@
 ---
-- name: kitchen-test-nexus-playbook
+- name: kitchen_test_nexus_playbook
   hosts: windows-servers
-  include_vars: testVars.yml
   roles:
     - uk-region
     - nexus-repository
