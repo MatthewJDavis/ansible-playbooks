@@ -3,6 +3,7 @@ driver:
   name: vagrant
   gui: true
   linked_clone: true
+  privileged: false
 
 platforms:
   - name: acs
@@ -24,14 +25,14 @@ platforms:
       ansible_host_key_checking: false
       ansible_verbose: true
       ansible_verbosity: 4
-      playbook: nexus-test-playbook.yml
+      playbook: testplaybook.yml
     verifier:
       name: shell
       command: echo 'Skipping Verify'
 
-  - name: windows2016
+  - name: windows2019
     driver_config:
-      box: mwrock/Windows2016
+      box: StefanScherer/windows_2019
       communicator: winrm
       network:
       - [ 'private_network', { ip: '172.28.128.11' } ]
@@ -41,7 +42,7 @@ platforms:
       provision: true
       # needed to run the ConfigureRemotingForAnsible.ps1
       vagrantfiles:
-        - vagrant_windows_target.rb
+        - vagrant_config_ansible.rb
     transport:
       name: winrm
     verifier:
