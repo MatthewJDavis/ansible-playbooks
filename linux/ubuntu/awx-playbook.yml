@@ -1,0 +1,14 @@
+---
+- hosts: ubuntu
+  become: true
+  vars:
+    nodejs_version: "6.x"
+    pip_install_packages:
+      - name: docker-py
+  roles:
+    - geerlingguy.git
+    - geerlingguy.ansible
+    - geerlingguy.pip
+    - geerlingguy.docker
+    - geerlingguy.nodejs
+    - geerlingguy.awx

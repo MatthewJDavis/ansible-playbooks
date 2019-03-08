@@ -1,2 +1,8 @@
 ---
+- src: geerlingguy.awx
+- src: geerlingguy.git
+- src: geerlingguy.ansible
+- src: geerlingguy.docker
+- src: geerlingguy.pip
+- src: geerlingguy.nodejs
 - src: https://github.com/MatthewJDavis/update-linux-server.git
