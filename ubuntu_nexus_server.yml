@@ -2,4 +2,4 @@
 - hosts: nexus-servers
   become: true
   roles:
-  - nexus
+  - ubuntu_nexus

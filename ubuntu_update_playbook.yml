@@ -2,4 +2,4 @@
 - hosts: linux-servers
   become: yes
   roles:
-  - update-linux-server
+  - ubuntu_update

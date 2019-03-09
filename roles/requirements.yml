@@ -6,3 +6,4 @@
 - src: geerlingguy.pip
 - src: geerlingguy.nodejs
 - src: https://github.com/MatthewJDavis/update-linux-server.git
+- src: dev-sec.os-hardening
