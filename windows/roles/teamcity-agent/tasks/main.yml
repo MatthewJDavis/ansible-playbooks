@@ -1,0 +1,50 @@
+---
+# Copy temp files
+- name: copy files required
+  win_copy:
+    src: files/
+    dest: C:\temp  
+# Install PowerShell modules
+- name: Install pester
+  win_command: powershell.exe
+  args:
+    stdin: 'Install-Module -Name Pester -Force -SkipPublisherCheck'
+  # Install teamcity agent
+- name: install git
+  win_chocolatey:
+    name: git
+    state: present
+    version: 2.21.0
+- name: install teamcity agent
+  win_chocolatey:
+    name: teamcityagent 
+    state: present
+    version: 2.2.1
+    ignore_checksums: yes
+    params: "serverurl={{ tc_server_url }}"
+# Find cacerts file(s) and update with custom cacerts file that has self signed cert
+- name: find cacerts file
+  win_find:
+    paths: 'C:\tools\Java\'
+    recurse: yes
+    patterns: cacerts
+  register: cacerts_path
+- name: get cacerts path
+  debug:
+    var: cacerts_path.files | map(attribute='path') | list
+- name: update cacerts file
+  win_copy:
+    src: files/testMatt
+    dest: "{{ item.path }}"
+    force: yes
+  with_items: "{{ cacerts_path.files }}"
+
+# todo import certs from c:\temp to windows store https://docs.ansible.com/ansible/latest/modules/win_certificate_store_module.html
+  
+- name: wait for agent to upgrade
+  win_wait_for:
+    path: c:\buildagent\logs\upgrade.log
+    search_regex: Finish upgrade
+    timeout: 600
+
+
