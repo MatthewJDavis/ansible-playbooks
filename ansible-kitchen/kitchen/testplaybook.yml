@@ -2,8 +2,6 @@
 - name: kitchen_test_role
   hosts: windows-servers
   vars_files:
-    - testVars.yml
+    - group_vars/testVars.yml
   roles:
-    - uk-region
-    - server-default
-    - poshbot
+    - teamcity-agent
