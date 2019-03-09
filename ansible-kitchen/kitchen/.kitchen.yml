@@ -52,4 +52,4 @@ platforms:
       name: shell
 
 suites:
-  - name: default
+  - name: teamcity-agent
