@@ -1,5 +1,5 @@
 ---
-- hosts: linux-servers
+- hosts: "{{ hosts }}"
   become: yes
   roles:
   - ubuntu_update
