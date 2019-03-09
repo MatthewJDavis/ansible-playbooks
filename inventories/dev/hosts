@@ -1,4 +1,4 @@
-poshbot ansible_host=
+poshbot ansible_host=51.140.108.201
 
 [windows-servers]
 poshbot
