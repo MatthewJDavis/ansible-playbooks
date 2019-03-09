@@ -27,7 +27,7 @@
   command: smashing new my-project
   args:
     chdir: /home/vagrant/smashing-dashboards
-- name: 
+- name:
   command: bundle
   args:
     chdir: /home/vagrant/smashing-dashboards/my-project
