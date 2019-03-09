@@ -1,6 +1,7 @@
 web1 ansible_ssh_host=192.168.33.20 
 db1 ansible_ssh_host=192.168.33.30 
 nexus ansible_ssh_host=192.168.33.49
+jenkins-azure ansible_ssh_host=51.140.54.92
 
 [webservers]
 web1
@@ -11,12 +12,22 @@ db1
 [nexus-servers]
 nexus
 
+[jenkins-servers]
+jenkins-azure
+
 [datacentre:children]
 webservers
 dbservers
 nexus-servers
 
+[azure:children]
+jenkins-servers
+
 [datacentre:vars]
 ansible_ssh_user=vagrant
 ansible_ssh_pass=vagrant
+
+[azure:vars]
+ansible_ssh_private_key=/matt/home/demo_keys/id_rsa 
+ansible_ssh_user=azureuser 
 
