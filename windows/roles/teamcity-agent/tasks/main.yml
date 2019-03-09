@@ -47,4 +47,8 @@
     search_regex: Finish upgrade
     timeout: 600
 
+- name: Clean up temp directory
+  win_file:
+    path: C:\Temp
+    state: absent
 
