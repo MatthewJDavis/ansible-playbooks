@@ -1,5 +1,5 @@
 ---
 - hosts: windows-servers
   roles:
-  - server-default
-  - uk-region
+  - win_server_default
+  - win_uk_region
