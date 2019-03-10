@@ -1,5 +1,5 @@
 ---
-- hosts: windows-servers
+- hosts: "{{ hosts }}"
   roles:
   - win_server_default
   - win_uk_region
