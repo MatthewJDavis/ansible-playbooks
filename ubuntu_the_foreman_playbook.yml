@@ -1,0 +1,7 @@
+---
+- hosts: "{{ host }}"
+  become: true
+  vars:
+    hostname: foreman.example.com
+  roles:
+   - ubuntu_the_foreman

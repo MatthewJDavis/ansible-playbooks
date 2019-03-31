@@ -1,0 +1,29 @@
+---
+- name: update hostname
+  hostname:
+    name: "{{ hostname }}"
+- name: update host file
+  lineinfile:
+    dest: /etc/hosts
+    line: 192.168.33.50  {{ hostname }}
+    state: present
+- name: install ca certs
+  apt:
+    upgrade: yes
+    update_cache: yes
+- name: add foreman key
+  apt_key:
+    url: https://deb.theforeman.org/pubkey.gpg
+    state: present
+- name: add foreman repos
+  apt_repository:
+    repo: "deb http://deb.theforeman.org/ bionic 1.21"
+    state: present
+- name: add plugins repo
+  apt_repository:
+    repo: "deb http://deb.theforeman.org/ plugins 1.21"
+    state: present
+- name: install the foreman installer
+  apt:
+    name: foreman-installer
+    state: present
