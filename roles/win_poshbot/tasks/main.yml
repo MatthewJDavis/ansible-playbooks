@@ -26,3 +26,7 @@
   template:
     src: templates/permissions.j2
     dest: 'c:\poshbot\permissions.psd1'
+- name: copy start poshbot script
+  win_copy:
+    src: files/Start-Poshbot.ps1
+    dest: 'C:\poshbot\Start-Poshbot.ps1'
