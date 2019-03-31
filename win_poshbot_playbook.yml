@@ -1,8 +1,8 @@
 ---
-- hosts: poshbot
-  include_vars: testVars.yml
+- hosts: "{{ host }}"
+  vars_files: 
+  - vars/testVars.yml
   roles:
-  - win_test_domain
   - win_server_default
   - win_uk_region
   - win_poshbot
