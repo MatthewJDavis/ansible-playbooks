@@ -31,6 +31,7 @@ Vagrant.configure("2") do |config|
     ubuntu1.vm.hostname = "ubuntu1"
     ubuntu1.vm.network "private_network", ip: "192.168.33.50"
     ubuntu1.vm.network "forwarded_port", guest: 8081, host: 8081
+    ubuntu1.vm.network "forwarded_port", guest: 443, host: 443
   end
 
   config.vm.define "centos" do |centos|
@@ -40,13 +41,13 @@ Vagrant.configure("2") do |config|
     centos.vm.network "forwarded_port", guest: 80, host: 8081
   end
 
-  config.vm.define "windows2016" do |windows2016|
-    windows2016.vm.box= "mwrock/Windows2016"
-    windows2016.vm.hostname = "windows2016"
+  config.vm.define "windows2019" do |windows2016|
+    windows2016.vm.box= "StefanScherer/windows_2019"
+    windows2016.vm.hostname = "windows2019"
     windows2016.vm.communicator = "winrm"
     windows2016.vm.network "private_network", ip: "192.168.33.20"
     windows2016.vm.provision "shell" do |provision|
-      provision.path = "provision-winrm.ps1"
+      provision.path = "vagrant_config_dsc.rb"
     end
   end
 end
