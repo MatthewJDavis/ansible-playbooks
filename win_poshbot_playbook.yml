@@ -6,3 +6,4 @@
   - win_server_default
   - win_uk_region
   - win_poshbot
+  - win_test_domain
