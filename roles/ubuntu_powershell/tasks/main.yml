@@ -1,0 +1,15 @@
+---
+- name: Add MS key to trusted
+  apt_key:
+    url: "https://packages.microsoft.com/keys/microsoft.asc"
+    state: present
+- name: Add PowerShell repo to list
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/ubuntu/18.04/prod bionic main"
+    state: present
+    filename: microsoft.powershell
+    update_cache: yes 
+- name: Install PowerShell
+  apt:
+    name: powershell
+    state: present
