@@ -1,0 +1,20 @@
+---
+- name: "Get distribution"
+  get_url:
+    url: "http://download.jetbrains.com/teamcity/TeamCity-{{ teamcity_server_version }}.tar.gz"
+    dest: "/tmp/TeamCity-{{ teamcity_server_version }}.tar.gz"
+    validate_certs: no
+    timeout: 60
+    checksum: "sha256:{{ teamcity_server_sha256 }}"
+  register: _teamcity_package
+
+- name: Ensure Java 8 is installed.
+  package:
+    name: "java-1.8.0-openjdk"
+    state: present
+
+- name: Set JAVA_HOME
+  copy:
+    src: java_home.sh
+    dest: /etc/profile.d/java_home.sh
+    mode: 0644
