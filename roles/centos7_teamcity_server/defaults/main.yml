@@ -1,0 +1,9 @@
+---
+# defaults file for ansible-role-teamcity
+
+
+# TeamCity User
+teamcity_server_su_user: "{{ su_user }}""
+teamcity_server_su_password: "{{ su_password }}"
+
+teamcity_server_db_type: "local"
