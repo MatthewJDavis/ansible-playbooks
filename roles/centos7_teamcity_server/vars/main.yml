@@ -2,6 +2,11 @@
 teamcity_server_version: 2019.1.5
 teamcity_server_sha256: d9491d46fa8a431fdf46a8471faa28f6ba080f55a4035df0415099105e35040d
 
+teamcity_server_bind_port: 8111
+
+teamcity_server_admin_user_created: "{{ teamcity_server_dir }}/admin-user-created"
+teamcity_server_license_accepted: "{{ teamcity_server_dir }}/license-accepted"
+
 teamcity_server_user: teamcity
 teamcity_server_group: teamcity
 teamcity_server_home: /home/teamcity
@@ -9,3 +14,6 @@ teamcity_server_home: /home/teamcity
 # TeamCity Dirs
 teamcity_server_install_dir: /opt
 teamcity_server_dir: "{{ teamcity_server_install_dir }}/TeamCity"
+teamcity_server_data_dir: "{{ teamcity_server_dir }}/dataDirectory"
+teamcity_server_plugins_dir: "{{ teamcity_server_data_dir }}/plugins"
+teamcity_server_config_dir: "{{ teamcity_server_data_dir }}/config"
