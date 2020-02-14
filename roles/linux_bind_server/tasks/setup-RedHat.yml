@@ -1,0 +1,22 @@
+---
+- name: ensure bind and bind-utils are installed
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - bind
+    - bind-utils
+- name: start bind
+  service:
+    name: named
+    state: started
+- name: enable port 53 udp
+  firewalld:
+    port: 53/udp
+    permanent: yes
+    state: enabled
+- name: enable port 53 tcp
+  firewalld:
+    port: 53/tcp
+    permanent: yes
+    state: enabled
