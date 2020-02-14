@@ -1,0 +1,16 @@
+---
+- name: Update repositories cache and install nginx
+  apt:
+    name: nginx
+    update_cache: yes
+- name: add index file
+  template:
+    src: templates/index.j2
+    dest: /usr/share/nginx/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
+- name: run nginx
+  service:
+    name: nginx
+    state: started
