@@ -1,14 +1,15 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+Install bind DNS on ubuntu or centos7.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+Testing
+------------
+MOLECULE_DISTRO=ubuntu1804 molecule converge
+MOLECULE_DISTRO=cento7 molecule converge
 
 Role Variables
 --------------

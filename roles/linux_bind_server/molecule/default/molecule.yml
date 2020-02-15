@@ -6,8 +6,8 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: centos7
-    image: "percygrunwald/docker-centos7-ansible:latest"
+  - name: instance
+    image: "percygrunwald/docker-${MOLECULE_DISTRO}-ansible:latest"
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
