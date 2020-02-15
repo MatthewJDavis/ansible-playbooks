@@ -1,0 +1,10 @@
+---
+- name: install bind
+  apt:
+    name: bind9
+    state: present
+    update_cache: yes
+- name: ensure bind is running
+  service:
+    name: bind9
+    state: started
