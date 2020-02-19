@@ -1,0 +1,17 @@
+//
+// Do any local configuration here
+//
+zone "example.com" IN {
+type master;
+file "db.example";
+allow-update { none; };
+};
+
+zone "2.0.10.in-addr.arpa" IN {
+type master;
+file "db.10.0.2";
+allow-update { none; };
+};
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
