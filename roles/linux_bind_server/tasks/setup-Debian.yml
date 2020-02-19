@@ -1,7 +1,9 @@
 ---
-- name: install bind
+- name: ensure bind and dnsutils are installed
   apt:
-    name: bind9
+    pkg:
+      - bind9
+      - dnsutils
     state: present
     update_cache: yes
 - name: ensure bind is running
