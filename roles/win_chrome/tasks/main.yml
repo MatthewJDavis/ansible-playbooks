@@ -1,0 +1,56 @@
+---
+  # role to install latest version of chrome and disable auto updates
+  - name: Create temp dir
+    win_file:
+      path: 'C:\temp'
+      state: directory
+  
+  - name: Download google chrome msi
+    win_get_url:
+      url: 'https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi'
+      dest: 'C:\temp\chrome.msi'
+  
+  - name: 'Install google chrome'
+    win_package:
+      path: 'C:\temp\chrome.msi'
+      arguments:
+      - '/quiet'
+      - '/norestart'
+      state: present
+      log_path: 'C:\temp\chrome.log'
+  
+  - name: remove chrome auto updater
+    win_file:
+      path: 'C:\Program Files (x86)\Google\Update\GoogleUpdate.exe'
+      state: absent
+    become_user: system
+  
+  - name: disable chrome update services
+    win_service:
+      name: "{{ item }}"
+      state: stopped
+      start_mode: disabled
+    loop:
+    - gupdate
+    - gupdate
+  
+  - name: set reg keys to disable chrome updater
+    win_regedit:
+      path: 'HKLM:\SOFTWARE\Policies\Google\Update'
+      name: "{{ item }}"
+      data: 0
+    loop:
+     - 'pdateDefault'
+     - 'AutoUpdateCheckPeriodMinutes'
+     
+  - name: get chrome version from install
+    win_shell: |
+      ((Get-Item (Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe').'(Default)').VersionInfo) | Select-Object productversion | ConvertTo-Json
+    register: chrome_version
+
+  - name: Set an environment variable for all users
+    win_environment:
+      state: present
+      name: CHROME_VERSION
+      value: "{{ (chrome_version.stdout | from_json).ProductVersion }}"
+      level: machine
