@@ -1,7 +1,18 @@
-web1 ansible_ssh_host=192.168.33.20 
+windows2019 ansible_host=192.168.33.20
 db1 ansible_ssh_host=192.168.33.30 
 nexus ansible_ssh_host=192.168.33.49
 jenkins-azure ansible_ssh_host=51.140.54.92
+
+
+[windows-servers]
+windows2019
+
+[windows-servers:vars]
+ansible_user=vagrant
+ansible_password={{ password }}
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
 
 [webservers]
 web1
@@ -25,7 +36,7 @@ jenkins-servers
 
 [datacentre:vars]
 ansible_ssh_user=vagrant
-ansible_ssh_pass=vagrant
+ansible_ssh_pass={{ password }}
 
 [azure:vars]
 ansible_ssh_private_key=/matt/home/demo_keys/id_rsa 
