@@ -1,0 +1,26 @@
+---
+- name: "Install unzip"
+  yum:
+    name: unzip
+    state: present
+
+- name: "Get vault"
+  get_url:
+    url: "https://releases.hashicorp.com/vault/{{ vault_version }}/vault_{{ vault_version }}_linux_amd64.zip"
+    dest: "/tmp/vault-{{ vault_version }}.tar.gz"
+    validate_certs: no
+    timeout: 60
+    checksum: "sha256:{{ vault_sha256 }}"
+  register: vault_package
+  
+- name: Make vault directory
+  file:
+    path: /opt/vault
+    state: directory
+
+- name: Unarchive vault package
+  unarchive:
+    src: "/tmp/vault-{{ vault_version }}.tar.gz"
+    dest: /opt/vault
+    remote_src: yes
+    creates: /opt/vault/vault
