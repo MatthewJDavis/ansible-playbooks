@@ -10,3 +10,4 @@
   service:
     name: bind9
     state: started
+# /etc/bind/named.conf.local
