@@ -29,7 +29,7 @@
         name: software-properties-common
         state: present
     - name: Add Ansible repo
-      apt_repository: 
+      apt_repository:
         repo: 'ppa:ansible/ansible'
         state: present
     - name: Install Ansible
@@ -40,7 +40,7 @@
     - name: Install pip
       easy_install:
         name: pip
-        state: latest
+        state: latest # noqa 403
     - name: Install winrm for python
       pip:
         name: 'pywinrm>=0.2.2'

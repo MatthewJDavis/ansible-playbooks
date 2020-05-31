@@ -27,5 +27,6 @@
       state: absent
     register: win_feature
 
-  - win_reboot:
+  - name: reboot server.
+    win_reboot:
     when: result.restart_required, win_feature.restart_required

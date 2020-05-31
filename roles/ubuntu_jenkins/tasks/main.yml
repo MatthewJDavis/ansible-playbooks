@@ -21,12 +21,12 @@
     name: openjdk-8-jre
     state: present
 - name: add Jenkins key
-  apt_key: 
-    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key 
+  apt_key:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
     state: present
 - name: add Jenkins repository
   apt_repository:
-    repo: deb https://pkg.jenkins.io/debian-stable binary/ 
+    repo: deb https://pkg.jenkins.io/debian-stable binary/
     state: present
 - name: install Jenkins
   apt:

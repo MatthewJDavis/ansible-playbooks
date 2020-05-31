@@ -1,6 +1,0 @@
----
-- hosts: "{{ host }}"
-  become: true
-  become_method: sudo
-  roles:
-  - ubuntu_smashing_dashboard  

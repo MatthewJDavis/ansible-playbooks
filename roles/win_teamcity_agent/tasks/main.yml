@@ -3,7 +3,7 @@
 - name: copy files required
   win_copy:
     src: files/
-    dest: C:\temp  
+    dest: C:\temp
 # Install PowerShell modules
 - name: Install pester
   win_command: powershell.exe
@@ -17,7 +17,7 @@
     version: 2.21.0
 - name: install teamcity agent
   win_chocolatey:
-    name: teamcityagent 
+    name: teamcityagent
     state: present
     version: 2.2.1
     ignore_checksums: yes
@@ -40,7 +40,7 @@
   with_items: "{{ cacerts_path.files }}"
 
 # todo import certs from c:\temp to windows store https://docs.ansible.com/ansible/latest/modules/win_certificate_store_module.html
-  
+
 - name: wait for agent to upgrade
   win_wait_for:
     path: c:\buildagent\logs\upgrade.log
@@ -51,4 +51,3 @@
   win_file:
     path: C:\Temp
     state: absent
-

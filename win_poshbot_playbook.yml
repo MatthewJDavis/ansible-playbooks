@@ -1,6 +1,6 @@
 ---
 - hosts: "{{ host }}"
-  vars_files: 
+  vars_files:
   - vars/testVars.yml
   roles:
   - win_server_default

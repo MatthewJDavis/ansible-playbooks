@@ -8,7 +8,7 @@
     repo: "deb [arch=amd64] https://packages.microsoft.com/ubuntu/18.04/prod bionic main"
     state: present
     filename: microsoft.powershell
-    update_cache: yes 
+    update_cache: yes
 - name: Install PowerShell
   apt:
     name: powershell

@@ -10,11 +10,13 @@
   poll: 0
   when: server_update is changed
 - name: Wait for server to restart
-  local_action:
-    module: wait_for
-      host={{ ansible_ssh_host }}
-      port=22
-      delay=10
+  wait_for:
+    host: "{{ ansible_default_ipv4.address }}"
+    port: 22
+    state: started
+    delay: 60
+    timeout: 120
+  delegate_to: localhost
   vars:
     ansible_become: no
   when: server_update is changed
