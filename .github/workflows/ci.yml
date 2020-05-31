@@ -6,6 +6,11 @@ name: CI
   push:
     branches:
       - master
+    paths-ignore:
+      - "README.md"
+      - "vagrant/**"
+      - "ansible-kitchen/**"
+      - ".vscode/**"
 
 jobs:
 
