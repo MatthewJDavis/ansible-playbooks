@@ -55,7 +55,8 @@
     src: nexus.service
     dest: /etc/systemd/system/
 - name: register nexus systemd config and start the service
-  shell: |
-    systemctl daemon-reload
-    systemctl enable nexus.service
-    systemctl start nexus.service
+  systemd:
+    name: nexus.service
+    enabled: yes
+    state: started
+    daemon_reload: yes
