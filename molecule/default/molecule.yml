@@ -6,10 +6,15 @@ driver:
 lint: |
   set -e
   yamllint .
-  ansible-lint
+  ansible-lint 
 platforms:
   - name: instance
-    image: percygrunwald/docker-ubuntu1804-ansible
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
+    command: ""
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
 verifier:
